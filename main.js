@@ -1601,12 +1601,36 @@
       });
     }
 
+    const btnDownload = document.getElementById('btnDownload');
+    const downloadModal = document.getElementById('downloadModal');
+    const modalClose = document.getElementById('modalClose');
+
+    if (btnDownload && downloadModal) {
+      btnDownload.addEventListener('click', () => {
+        downloadModal.classList.add('open');
+      });
+    }
+    if (modalClose && downloadModal) {
+      modalClose.addEventListener('click', () => {
+        downloadModal.classList.remove('open');
+      });
+    }
+    if (downloadModal) {
+      downloadModal.addEventListener('click', e => {
+        if (e.target === downloadModal) downloadModal.classList.remove('open');
+      });
+    }
+
     // Keyboard shortcuts
     window.addEventListener('keydown', e => {
       if (e.target.tagName === 'INPUT') return;
-      if (e.code === 'Space') {
+      if (e.key === 'Escape' && downloadModal) {
+        downloadModal.classList.remove('open');
+      } else if (e.code === 'Space') {
         e.preventDefault();
         togglePlay();
+      } else if (e.key === 'd' || e.key === 'D') {
+        if (downloadModal) downloadModal.classList.toggle('open');
       } else if (e.key === 'm' || e.key === 'M') {
         e.preventDefault();
         toggleAudio();
@@ -1660,8 +1684,27 @@
     initDataDrivenElements();
     resizeStage();
     bindEvents();
-    setTime(0);
-    play();
+
+    // Check if running in headless video export mode (?export=1)
+    const urlParams = new URLSearchParams(window.location.search);
+    const isExport = urlParams.get('export') === '1';
+
+    if (isExport) {
+      if (controlsEl) controlsEl.style.display = 'none';
+      if (stage) stage.style.setProperty('--s', '1');
+      setTime(0);
+      pause();
+    } else {
+      setTime(0);
+      play();
+    }
+
+    // Expose engine controls for video renderer & testing
+    window.setTime = setTime;
+    window.renderFrame = renderFrame;
+    window.play = play;
+    window.pause = pause;
+    window.TOTAL_DURATION = TOTAL_DURATION;
   });
 
 })();

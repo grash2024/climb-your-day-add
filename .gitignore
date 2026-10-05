@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+.server.pid
+test_*.js
+test_*.mp4
+test.wav
+scratch_voice/

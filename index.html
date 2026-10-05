@@ -1118,8 +1118,54 @@
       <button id="btnFull" aria-label="Fullscreen"><svg viewBox="0 0 24 24">
           <path d="M4 4h6v2H6v4H4zM14 4h6v6h-2V6h-4zM4 14h2v4h4v2H4zM18 14h2v6h-6v-2h4z" />
         </svg></button>
+      <button id="btnDownload" class="btn-download" aria-label="Download Video" title="Download Promo Video (1080p MP4)">
+        <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor">
+          <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
+        </svg>
+        <span>Download Video</span>
+      </button>
     </div>
   </main>
+
+  <!-- ============ DOWNLOAD MODAL ============ -->
+  <div id="downloadModal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div class="modal-title">Download Assets</div>
+        <button id="modalClose" class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-options">
+        <a href="climb_your_day_promo.mp4" download="climb_your_day_promo.mp4" class="opt-btn featured" id="optMp4">
+          <div class="opt-info">
+            <div class="opt-name">1080p MP4 Video (Full Promo)</div>
+            <div class="opt-desc">Full 86s HD video with Samantha Voiceover + Ducked Music + SFX</div>
+          </div>
+          <span class="opt-badge">DOWNLOAD MP4</span>
+        </a>
+        <a href="soundtrack.wav" download="climb_your_day_soundtrack_master.wav" class="opt-btn">
+          <div class="opt-info">
+            <div class="opt-name">Master Soundtrack (WAV)</div>
+            <div class="opt-desc">Broadcast 44.1kHz 16-bit PCM Master Mix (Music + Voice)</div>
+          </div>
+          <span class="opt-badge" style="background:#2f63a8">AUDIO</span>
+        </a>
+        <a href="soundtrack_music.wav" download="climb_your_day_soundtrack_music.wav" class="opt-btn">
+          <div class="opt-info">
+            <div class="opt-name">Instrumental Music Only (WAV)</div>
+            <div class="opt-desc">Clean acoustic synth score without voice narration</div>
+          </div>
+          <span class="opt-badge" style="background:#2f63a8">MUSIC</span>
+        </a>
+        <a href="soundtrack_voice.wav" download="climb_your_day_soundtrack_voice.wav" class="opt-btn">
+          <div class="opt-info">
+            <div class="opt-name">Voiceover Narration Only (WAV)</div>
+            <div class="opt-desc">Isolated studio vocal track across all 12 scenes</div>
+          </div>
+          <span class="opt-badge" style="background:#2f63a8">VOICE</span>
+        </a>
+      </div>
+    </div>
+  </div>
 
   <script src="main.js"></script>
 </body>
