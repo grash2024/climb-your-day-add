@@ -1,0 +1,1127 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Climb Your Day — Turn Habits Into a Mountain Climb</title>
+  <meta name="description"
+    content="Climb Your Day is a gamified habit tracker: build daily habits, earn points, keep your streak, beat distractions and climb your own mountain.">
+  <meta name="theme-color" content="#0b1630">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ============ SYMBOL LIBRARY ============ -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#3567aa" />
+        <stop offset="1" stop-color="#0f2349" />
+      </linearGradient>
+      <linearGradient id="logoSun" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#ffd8a0" />
+        <stop offset="1" stop-color="#ff9450" />
+      </linearGradient>
+    </defs>
+    <symbol id="logo" viewBox="0 0 64 64">
+      <rect width="64" height="64" rx="16" fill="url(#logoGrad)" />
+      <circle cx="45" cy="20" r="6.5" fill="url(#logoSun)" />
+      <path d="M6 51 L25 21 L33 33 L39 25.5 L58 51 Z" fill="#d6e5f7" />
+      <path d="M25 21 L30.6 29.8 L27.4 28.6 L24.8 31.8 L22 26.2 Z" fill="#ffffff" />
+      <path d="M39 25.5 L58 51 L44 51 Z" fill="#a9c4e6" opacity=".7" />
+      <path d="M19 51 C 27 47, 22 42, 29.5 39 S 33.5 34.5, 32.6 32.4" fill="none" stroke="#ff9450" stroke-width="2.6"
+        stroke-linecap="round" stroke-dasharray="0.1 4.2" />
+    </symbol>
+    <symbol id="i-status" viewBox="0 0 68 13">
+      <rect x="0" y="8" width="3" height="5" rx="1" />
+      <rect x="5" y="6" width="3" height="7" rx="1" />
+      <rect x="10" y="3.5" width="3" height="9.5" rx="1" />
+      <rect x="15" y="1" width="3" height="12" rx="1" />
+      <path d="M27 4.2a9 9 0 0 1 12 0l-1.4 1.5a7 7 0 0 0-9.2 0zM29.6 7a5.3 5.3 0 0 1 6.8 0L33 10.6z" />
+      <rect x="44.5" y="1" width="21" height="11" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".45" />
+      <rect x="46.5" y="3" width="15" height="7" rx="1.6" />
+      <rect x="66.3" y="4.5" width="1.6" height="4" rx=".8" opacity=".45" />
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24">
+      <path d="M5 12.5l4.2 4.2L19 7" />
+    </symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24">
+      <path d="M12 5v14M5 12h14" />
+    </symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24">
+      <path d="M5 12h14" />
+    </symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24">
+      <path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z" />
+      <path d="M10 20.5a2 2 0 0 0 4 0" />
+    </symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24">
+      <path d="M12 3c1 3.5 5 5.5 5 10a5 5 0 0 1-10 0c0-2.2 1.2-3.6 2.4-4.6.2 1.6 1 2.6 2.1 2.9C11 9 11 6 12 3z" />
+    </symbol>
+    <symbol id="i-book" viewBox="0 0 24 24">
+      <path
+        d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v15H5.5A1.5 1.5 0 0 0 4 20.5zM20 5.5A1.5 1.5 0 0 0 18.5 4H13v15h5.5a1.5 1.5 0 0 1 1.5 1.5z" />
+    </symbol>
+    <symbol id="i-dumbbell" viewBox="0 0 24 24">
+      <path d="M3 10v4M6.5 7v10M17.5 7v10M21 10v4M6.5 12h11" />
+    </symbol>
+    <symbol id="i-drop" viewBox="0 0 24 24">
+      <path d="M12 3.5s6 6.6 6 11a6 6 0 0 1-12 0c0-4.4 6-11 6-11z" />
+    </symbol>
+    <symbol id="i-lotus" viewBox="0 0 24 24">
+      <path d="M12 20c-4 0-8-2-9-5 3-.5 6 .5 9 3 3-2.5 6-3.5 9-3-1 3-5 5-9 5z" />
+      <path d="M12 18c-2-2-3-5-2-9 1 .5 1.6 1.2 2 2 .4-.8 1-1.5 2-2 1 4 0 7-2 9z" />
+    </symbol>
+    <symbol id="i-steps" viewBox="0 0 24 24">
+      <path
+        d="M8 3.5c1.7 0 2.5 2 2.5 4.5S9.5 12 8 12 5.5 10 5.5 7.5 6.3 3.5 8 3.5zM6 14.5h4v2a2 2 0 0 1-4 0zM16 7.5c1.7 0 2.5 2 2.5 4.5S17.5 16 16 16s-2.5-1.5-2.5-4 .8-4.5 2.5-4.5zM14 18.5h4v1a2 2 0 0 1-4 0z" />
+    </symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24">
+      <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" />
+    </symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24">
+      <rect x="5" y="11" width="14" height="9" rx="2" />
+      <path d="M8 11V8a4 4 0 0 1 8 0v3" />
+    </symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24">
+      <path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" />
+    </symbol>
+    <symbol id="i-play" viewBox="0 0 24 24">
+      <path d="M8 5.5v13l10-6.5z" />
+    </symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24">
+      <path d="M4 5h16v11H9l-5 4z" />
+    </symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24">
+      <rect x="3" y="7" width="18" height="13" rx="3" />
+      <circle cx="12" cy="13.5" r="3.5" />
+      <path d="M8.5 7l1.5-3h4l1.5 3" />
+    </symbol>
+    <symbol id="i-music" viewBox="0 0 24 24">
+      <path d="M9 18V6l10-2v12" />
+      <circle cx="6.5" cy="18" r="2.5" />
+      <circle cx="16.5" cy="16" r="2.5" />
+    </symbol>
+    <symbol id="i-image" viewBox="0 0 24 24">
+      <rect x="3" y="4" width="18" height="16" rx="3" />
+      <path d="M3 16l5-5 4 4 3-3 6 6" />
+      <circle cx="15.5" cy="8.5" r="1.5" />
+    </symbol>
+    <symbol id="i-star" viewBox="0 0 24 24">
+      <path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8 6.8 19.6l1-5.8-4.3-4.1 5.9-.8z" />
+    </symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24">
+      <path d="M13 3L5 13.5h6L10 21l8-10.5h-6z" />
+    </symbol>
+    <symbol id="i-mountain" viewBox="0 0 24 24">
+      <path d="M3 19L9.5 8l3.5 6 2-3 6 8z" />
+    </symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24">
+      <circle cx="12" cy="13" r="4" />
+      <path d="M12 4v2M4.5 13h-2M21.5 13h-2M6.3 7.3 5 6M17.7 7.3 19 6M3 19h18" />
+    </symbol>
+    <symbol id="i-today" viewBox="0 0 24 24">
+      <path d="M4 6.5l1.5 1.5L8 5.5M4 13l1.5 1.5L8 12M11 7h9M11 13.5h9M4 19h16" />
+    </symbol>
+    <symbol id="i-history" viewBox="0 0 24 24">
+      <rect x="4" y="5" width="16" height="15" rx="2" />
+      <path d="M4 10h16M9 3v4M15 3v4" />
+    </symbol>
+    <symbol id="i-stats" viewBox="0 0 24 24">
+      <path d="M6 20V11M12 20V5M18 20v-7" />
+    </symbol>
+    <symbol id="i-more" viewBox="0 0 24 24">
+      <path d="M5 12h.01M12 12h.01M19 12h.01" stroke-width="3.4" />
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7.5V12l3 2" />
+    </symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24">
+      <path d="M6 21V4M6 4h11l-2.5 4L17 12H6" />
+    </symbol>
+    <symbol id="i-back" viewBox="0 0 24 24">
+      <path d="M15 5l-7 7 7 7" />
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 24 24">
+      <path d="M6 6l12 12M18 6L6 18" />
+    </symbol>
+    <symbol id="i-share" viewBox="0 0 24 24">
+      <path d="M4 12l16-8-6 16-2.5-6.5z" />
+    </symbol>
+    <symbol id="i-bookmark" viewBox="0 0 24 24">
+      <path d="M6 4h12v17l-6-4-6 4z" />
+    </symbol>
+    <symbol id="i-down" viewBox="0 0 24 32">
+      <path d="M12 3v24M5 20l7 7 7-7" />
+    </symbol>
+  </svg>
+
+  <main class="viewport">
+    <h1 class="sr-only">Climb Your Day — a gamified habit tracker that turns everyday habits into a mountain-climbing
+      journey</h1>
+
+    <div id="stage" class="stage" role="img" aria-label="Climb Your Day promotional animation">
+
+      <!-- ================= WORLD (mountain environment) ================= -->
+      <div id="sky" class="sky"></div>
+      <div id="world" class="world">
+        <!-- sky: stars + sun -->
+        <div class="layer" data-depth="0.05">
+          <svg width="1920" height="1080" viewBox="0 0 1920 1080">
+            <defs>
+              <radialGradient id="gSun">
+                <stop offset="0" style="stop-color:var(--sun)" stop-opacity=".95" />
+                <stop offset=".12" style="stop-color:var(--sun)" stop-opacity=".55" />
+                <stop offset=".45" style="stop-color:var(--sun)" stop-opacity=".16" />
+                <stop offset="1" style="stop-color:var(--sun)" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+            <g id="stars"></g>
+            <g id="sun">
+              <circle r="520" fill="url(#gSun)" />
+              <circle r="44" style="fill:var(--sun)" />
+            </g>
+          </svg>
+        </div>
+        <!-- far ranges -->
+        <div class="layer" data-depth="0.25">
+          <svg width="1920" height="1080" viewBox="0 0 1920 1080">
+            <defs>
+              <linearGradient id="gFarHaze" gradientUnits="userSpaceOnUse" x1="0" y1="520" x2="0" y2="900">
+                <stop offset="0" style="stop-color:var(--haze)" stop-opacity="0" />
+                <stop offset="1" style="stop-color:var(--haze)" stop-opacity=".7" />
+              </linearGradient>
+            </defs>
+            <path id="farA" style="fill:var(--far)" opacity=".5" />
+            <path id="farB" style="fill:var(--far)" />
+            <rect x="-2000" y="420" width="6000" height="1600" fill="url(#gFarHaze)" />
+          </svg>
+        </div>
+        <!-- back clouds -->
+        <div class="layer" data-depth="0.4"><svg width="1920" height="1080" viewBox="0 0 1920 1080">
+            <g id="cloudsBack"></g>
+          </svg></div>
+        <!-- mid range -->
+        <div class="layer" data-depth="0.6">
+          <svg width="1920" height="1080" viewBox="0 0 1920 1080">
+            <defs>
+              <linearGradient id="gMidHaze" gradientUnits="userSpaceOnUse" x1="0" y1="640" x2="0" y2="1000">
+                <stop offset="0" style="stop-color:var(--haze)" stop-opacity="0" />
+                <stop offset="1" style="stop-color:var(--haze)" stop-opacity=".45" />
+              </linearGradient>
+            </defs>
+            <path id="midRange" style="fill:var(--mid)" />
+            <rect x="-2000" y="560" width="6000" height="1600" fill="url(#gMidHaze)" />
+          </svg>
+        </div>
+        <!-- main mountain -->
+        <div class="layer" data-depth="1">
+          <svg width="1920" height="1080" viewBox="0 0 1920 1080">
+            <defs>
+              <clipPath id="mClip">
+                <path id="mClipPath" />
+              </clipPath>
+              <linearGradient id="gHaze" gradientUnits="userSpaceOnUse" x1="0" y1="420" x2="0" y2="1060">
+                <stop offset="0" style="stop-color:var(--haze)" stop-opacity="0" />
+                <stop offset="1" style="stop-color:var(--haze)" stop-opacity=".5" />
+              </linearGradient>
+              <linearGradient id="gLight" gradientUnits="userSpaceOnUse" x1="700" y1="120" x2="1000" y2="700">
+                <stop offset="0" stop-color="#fff" stop-opacity=".22" />
+                <stop offset="1" stop-color="#fff" stop-opacity="0" />
+              </linearGradient>
+              <radialGradient id="gHalo">
+                <stop offset="0" stop-color="#fff" stop-opacity=".55" />
+                <stop offset="1" stop-color="#fff" stop-opacity="0" />
+              </radialGradient>
+              <radialGradient id="gLamp">
+                <stop offset="0" stop-color="#fff6d8" stop-opacity=".95" />
+                <stop offset=".35" stop-color="#ffe2a8" stop-opacity=".3" />
+                <stop offset="1" stop-color="#ffd38a" stop-opacity="0" />
+              </radialGradient>
+              <radialGradient id="gFire">
+                <stop offset="0" stop-color="#ffd38a" stop-opacity=".9" />
+                <stop offset=".4" stop-color="#ff9a55" stop-opacity=".35" />
+                <stop offset="1" stop-color="#ff7a3a" stop-opacity="0" />
+              </radialGradient>
+              <radialGradient id="gPeak">
+                <stop offset="0" stop-color="#ffe2b8" stop-opacity=".9" />
+                <stop offset="1" stop-color="#ffb070" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+            <path id="mBase" style="fill:var(--lit)" />
+            <path id="mLight" fill="url(#gLight)" />
+            <path id="mShade" style="fill:var(--shade)" />
+            <path id="mShade2" style="fill:var(--shade)" opacity=".55" />
+            <g id="mFacets" fill="none" style="stroke:var(--shade)" stroke-width="2.4" stroke-linecap="round"
+              opacity=".45"></g>
+            <path id="mSnow" style="fill:var(--snow)" />
+            <path id="mSnowS" style="fill:var(--snowS)" />
+            <path id="mSnow2" style="fill:var(--snow)" opacity=".9" />
+            <path id="mSnow3" style="fill:var(--snowS)" opacity=".9" />
+            <rect clip-path="url(#mClip)" x="0" y="0" width="1920" height="1200" fill="url(#gHaze)" />
+            <circle id="peakGlow" cx="980" cy="140" r="160" fill="url(#gPeak)" opacity="0" />
+            <path id="mGround" style="fill:var(--ground)" />
+            <path id="mTrees" style="fill:var(--tree)" />
+            <g id="tent" transform="translate(790,1034)">
+              <path d="M-20,0 L0,-26 L20,0 Z" fill="#e98a4c" />
+              <path d="M0,-26 L20,0 L8,0 Z" fill="#c76c35" />
+              <path d="M-5,0 L0,-9 L5,0 Z" fill="#3a2a2a" />
+              <line x1="0" y1="-26" x2="0" y2="-33" stroke="#e8eef8" stroke-width="1.2" />
+              <path d="M0,-33 L8,-31 L0,-29Z" fill="#ffd39b" />
+            </g>
+            <path id="trailBase" fill="none" style="stroke:var(--trail)" stroke-width="2.6" stroke-dasharray="0.1 7"
+              stroke-linecap="round" opacity=".7" />
+            <path id="trailGlow" fill="none" stroke="#ffcf8f" stroke-width="11" stroke-linecap="round" opacity=".22" />
+            <path id="trailProg" fill="none" stroke="#ffdcab" stroke-width="3.2" stroke-linecap="round" />
+            <g id="markers"></g>
+            <g id="climber">
+              <circle id="cHalo" cx="0" cy="-6" r="30" fill="url(#gHalo)" opacity=".5" />
+              <circle id="cRing" cx="0" cy="-13" r="20" fill="none" stroke="#fff" stroke-width="1.6" />
+              <ellipse cx="0" cy="0" rx="8" ry="2.2" fill="#000" opacity=".28" />
+              <g id="cFlip">
+                <circle id="cLamp" cx="18" cy="-24" r="26" fill="url(#gLamp)" opacity="0" />
+                <g id="cBob">
+                  <g id="legB">
+                    <line x1="-.4" y1="-11" x2="-.4" y2="-.6" stroke="#1a2846" stroke-width="3.4"
+                      stroke-linecap="round" />
+                  </g>
+                  <rect x="-8" y="-22.5" width="6.8" height="10.5" rx="2.3" fill="#2c5878" />
+                  <rect x="-8.6" y="-24.6" width="7.6" height="3.2" rx="1.6" fill="#3f7a66" />
+                  <rect x="-3.6" y="-22.2" width="7.8" height="12.2" rx="3.3" fill="#ee8a4c" />
+                  <g id="legF">
+                    <line x1=".6" y1="-11" x2=".6" y2="-.6" stroke="#25375c" stroke-width="3.4"
+                      stroke-linecap="round" />
+                  </g>
+                  <g id="armF">
+                    <line x1="1" y1="-19.5" x2="3.8" y2="-13.4" stroke="#d6733b" stroke-width="2.7"
+                      stroke-linecap="round" />
+                    <line x1="3.8" y1="-13.4" x2="8" y2="-.6" stroke="#d3dceb" stroke-width=".95" />
+                  </g>
+                  <circle cx="1.3" cy="-25.8" r="3.8" fill="#f2c7a3" />
+                  <path d="M-2.7,-26.3 A4,4 0 0 1 5.3,-26.3 Z" fill="#2b4a73" />
+                  <circle cx="1.3" cy="-30.6" r="1.2" fill="#e9eef7" />
+                </g>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <!-- front clouds -->
+        <div class="layer" data-depth="1.2"><svg width="1920" height="1080" viewBox="0 0 1920 1080">
+            <g id="cloudsFront"></g>
+          </svg></div>
+        <!-- foreground -->
+        <div class="layer" data-depth="1.5" id="fgLayer">
+          <svg width="1920" height="1080" viewBox="0 0 1920 1080">
+            <path id="fgHills" style="fill:var(--fg)" />
+            <path id="fgTrees" style="fill:var(--fgTree)" />
+          </svg>
+        </div>
+      </div>
+      <div id="dim" class="dim"></div>
+
+      <!-- world-anchored labels -->
+      <div id="wlabels" class="ui"></div>
+      <div id="climbChip" class="climb-chip"><svg class="ic">
+          <use href="#i-mountain" />
+        </svg><span>LV 12</span>
+        <div class="bar"><i id="chipBar"></i></div><b id="chipPlus"></b>
+      </div>
+
+      <!-- ================= SUMMIT VIEW (behind the climber) ================= -->
+      <div id="summit" class="summit">
+        <svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="sSky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#0f2148" />
+              <stop offset=".34" stop-color="#36588f" />
+              <stop offset=".55" stop-color="#b98b98" />
+              <stop offset=".64" stop-color="#ffc58f" />
+              <stop offset="1" stop-color="#ffe3b8" />
+            </linearGradient>
+            <radialGradient id="sGlow">
+              <stop offset="0" stop-color="#fff4dc" stop-opacity="1" />
+              <stop offset=".1" stop-color="#ffe0ad" stop-opacity=".75" />
+              <stop offset=".35" stop-color="#ffbe82" stop-opacity=".28" />
+              <stop offset="1" stop-color="#ff9f6a" stop-opacity="0" />
+            </radialGradient>
+            <linearGradient id="sRock" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#1f3358" />
+              <stop offset="1" stop-color="#0a142b" />
+            </linearGradient>
+            <linearGradient id="sPeakG" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#5b6c9e" />
+              <stop offset="1" stop-color="#8d8fb8" />
+            </linearGradient>
+          </defs>
+          <g id="sCam">
+            <rect x="-300" y="-300" width="2520" height="1680" fill="url(#sSky)" />
+            <g id="sRays" opacity=".08"></g>
+            <circle id="sGlowC" cx="1180" cy="660" r="760" fill="url(#sGlow)" />
+            <circle id="sSun" cx="1180" cy="660" r="62" fill="#fff4de" />
+            <g fill="url(#sPeakG)">
+              <path d="M240,672 L330,592 L372,624 L416,600 L520,672Z" />
+              <path d="M1460,672 L1560,580 L1610,622 L1650,606 L1760,672Z" />
+              <path d="M1760,672 L1820,630 L1900,672Z" />
+            </g>
+            <g fill="#ffe2c4" opacity=".6">
+              <path d="M330,592 L350,610 L338,612 L326,622 L316,604Z" />
+              <path d="M1560,580 L1582,600 L1568,603 L1556,614 L1544,596Z" />
+            </g>
+            <g id="sClouds"></g>
+            <g id="sRockG">
+              <path
+                d="M-300,1400 L-300,905 C 100,880 300,860 480,846 L620,812 L700,826 L780,818 L900,826 L1020,840 L1180,884 L1420,960 L1700,1060 L2200,1400 Z"
+                fill="url(#sRock)" />
+              <path id="sRim"
+                d="M-300,905 C 100,880 300,860 480,846 L620,812 L700,826 L780,818 L900,826 L1020,840 L1180,884 L1420,960 L1700,1060"
+                fill="none" stroke="#ffcf98" stroke-width="3" opacity=".3" />
+              <path id="sRim2" d="M480,846 L620,812 L700,826 L780,818 L900,826 L1020,840 L1180,884 L1420,960"
+                fill="none" stroke="#ffb878" stroke-width="14" opacity=".08" stroke-linecap="round" />
+              <path d="M560,834 L620,812 L700,826 L666,838 L612,836Z" fill="#e8eef8" opacity=".9" />
+              <path d="M1020,840 L1108,862 L1060,868Z" fill="#e8eef8" opacity=".8" />
+              <path d="M140,882 L230,870 L190,884Z" fill="#e8eef8" opacity=".6" />
+            </g>
+            <g id="sFlag" transform="translate(980,834)">
+              <line x1="0" y1="0" x2="0" y2="-250" stroke="#dfe7f3" stroke-width="6" stroke-linecap="round" />
+              <path id="sFlagPath" fill="#ff9f5a" />
+              <path id="sFlagShade" fill="#000" opacity=".12" />
+            </g>
+            <g id="sClimber" transform="translate(800,822)">
+              <ellipse cx="0" cy="2" rx="74" ry="10" fill="#050b1c" opacity=".5" />
+              <path d="M-28,-120 L-32,-10" stroke="#1b2947" stroke-width="28" stroke-linecap="round" />
+              <path d="M28,-120 L32,-10" stroke="#1b2947" stroke-width="28" stroke-linecap="round" />
+              <rect x="-52" y="-18" width="34" height="20" rx="9" fill="#0e172b" />
+              <rect x="18" y="-18" width="34" height="20" rx="9" fill="#0e172b" />
+              <path d="M40,-118 L42,-14" stroke="#ffcf98" stroke-width="3" opacity=".55" stroke-linecap="round" />
+              <g id="sArmL">
+                <path d="M-44,-196 L-60,-112" stroke="#c96a35" stroke-width="22" stroke-linecap="round" />
+                <circle cx="-61" cy="-106" r="11" fill="#1b2947" />
+              </g>
+              <g id="sArmR">
+                <path d="M44,-196 L60,-112" stroke="#e98a4c" stroke-width="22" stroke-linecap="round" />
+                <circle cx="61" cy="-106" r="11" fill="#1b2947" />
+                <path d="M54,-192 L68,-118" stroke="#ffd2a0" stroke-width="3" opacity=".8" stroke-linecap="round" />
+              </g>
+              <circle cx="0" cy="-236" r="28" fill="#2b4a73" />
+              <path d="M-27.5,-228 Q0,-214 27.5,-228 L27,-218 Q0,-204 -27,-218Z" fill="#3c6aa0" />
+              <circle cx="0" cy="-266" r="9" fill="#e9edf5" />
+              <path d="M20,-256 A28,28 0 0 1 27,-232" stroke="#ffd2a0" stroke-width="3" fill="none" opacity=".8"
+                stroke-linecap="round" />
+              <rect x="-52" y="-210" width="104" height="114" rx="28" fill="#e98a4c" />
+              <rect x="-52" y="-210" width="44" height="114" rx="28" fill="#b95f2f" opacity=".55" />
+              <rect x="-41" y="-202" width="82" height="98" rx="19" fill="#21456a" />
+              <rect x="-41" y="-202" width="82" height="30" rx="15" fill="#1a3858" />
+              <rect x="-26" y="-150" width="52" height="32" rx="9" fill="#2a567f" />
+              <path d="M-20,-140 H20" stroke="#ff9f5a" stroke-width="3" stroke-linecap="round" />
+              <rect x="-48" y="-220" width="96" height="24" rx="12" fill="#3f7a66" />
+              <path d="M51,-196 L51,-104" stroke="#ffd2a0" stroke-width="3.5" opacity=".85" stroke-linecap="round" />
+              <path d="M40,-198 L40,-108" stroke="#ffcf98" stroke-width="2.5" opacity=".5" stroke-linecap="round" />
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <!-- ================= STUDIO BG (overview) ================= -->
+      <div id="studio" class="studio"><svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+          <g id="topo" fill="none" stroke="#8fbaf0" stroke-opacity=".07" stroke-width="1.5"></g>
+        </svg></div>
+
+      <!-- ================= DISTRACTION ICONS ================= -->
+      <div id="distract" class="ui"></div>
+
+      <!-- ================= PHONE ================= -->
+      <div id="phone" class="phone">
+        <div class="phone-frame">
+          <div class="screen">
+
+            <!-- TODAY + CREATE (scenes 2–3) -->
+            <section class="scr scr-light" data-in="6.9" data-dur=".01" data-fx="fade" data-out="22.3" data-odur=".01">
+              <div class="sb"><span class="sb-time">7:30</span><svg class="sb-ic">
+                  <use href="#i-status" />
+                </svg></div>
+              <header class="app-head">
+                <div>
+                  <div class="eyebrow">TODAY · MON, OCT 5</div>
+                  <div class="app-title">Ready to climb?</div>
+                </div>
+                <div class="pts-badge"><svg class="ic">
+                    <use href="#i-bolt" />
+                  </svg>1,250</div>
+              </header>
+              <div class="habits">
+                <div class="habit" data-in="7.55" data-fx="up">
+                  <div class="h-ic" style="--c:#2f63a8"><svg class="ic">
+                      <use href="#i-dumbbell" />
+                    </svg></div>
+                  <div class="h-txt"><b>Morning Workout</b><span>Daily · +100 pts</span></div>
+                  <div class="h-btn"><span class="b-todo">COMPLETE</span></div>
+                </div>
+                <div class="habit" data-in="7.67" data-fx="up">
+                  <div class="h-glow" data-in="17.1" data-fx="fade" data-dur=".4"></div>
+                  <div class="h-ic" style="--c:#e0823a"><svg class="ic">
+                      <use href="#i-book" />
+                    </svg></div>
+                  <div class="h-txt"><b>Read 20 Minutes</b><span>8:00 PM · +50 pts</span></div>
+                  <div class="h-btn" data-press="17.0">
+                    <span class="b-todo" data-in="0" data-dur=".01" data-fx="fade" data-out="17.05"
+                      data-odur=".12">COMPLETE</span>
+                    <span class="b-done" data-in="17.1" data-fx="pop" data-dur=".5"><svg class="ic">
+                        <use href="#i-check" />
+                      </svg>DONE</span>
+                    <div class="tap" data-tap="17.0"></div>
+                  </div>
+                  <div class="pts-chip" id="chip50" data-in="17.25" data-fx="pop" data-dur=".5" data-out="18.2"
+                    data-odur=".3">+50</div>
+                </div>
+                <div class="habit" data-in="7.79" data-fx="up">
+                  <div class="h-ic" style="--c:#3b97cf"><svg class="ic">
+                      <use href="#i-drop" />
+                    </svg></div>
+                  <div class="h-txt"><b>Drink Water</b><span>8 glasses · +50 pts</span></div>
+                  <div class="h-btn"><span class="b-todo">COMPLETE</span></div>
+                </div>
+                <div class="habit" data-in="7.91" data-fx="up">
+                  <div class="h-ic" style="--c:#3fa877"><svg class="ic">
+                      <use href="#i-lotus" />
+                    </svg></div>
+                  <div class="h-txt"><b>Meditate</b><span>10 min · +75 pts</span></div>
+                  <div class="h-btn"><span class="b-todo">COMPLETE</span></div>
+                </div>
+                <div class="habit" data-in="8.03" data-fx="up">
+                  <div class="h-ic" style="--c:#4a5fae"><svg class="ic">
+                      <use href="#i-steps" />
+                    </svg></div>
+                  <div class="h-txt"><b>Walk 5,000 Steps</b><span>Daily · +100 pts</span></div>
+                  <div class="h-btn"><span class="b-todo">COMPLETE</span></div>
+                </div>
+              </div>
+              <div class="add-wrap" data-in="8.2" data-fx="up">
+                <div class="add-btn" data-press="9.4"><svg class="ic">
+                    <use href="#i-plus" />
+                  </svg>ADD HABIT<div class="tap" data-tap="9.4"></div>
+                </div>
+              </div>
+              <nav class="tabbar">
+                <div class="tab on"><span class="ti"><svg class="ic">
+                      <use href="#i-today" />
+                    </svg></span>Today</div>
+                <div class="tab"><span class="ti"><svg class="ic">
+                      <use href="#i-mountain" />
+                    </svg></span>Climb</div>
+                <div class="tab"><span class="ti"><svg class="ic">
+                      <use href="#i-history" />
+                    </svg></span>History</div>
+                <div class="tab"><span class="ti"><svg class="ic">
+                      <use href="#i-stats" />
+                    </svg></span>Stats</div>
+                <div class="tab"><span class="ti"><svg class="ic">
+                      <use href="#i-more" />
+                    </svg></span>More</div>
+              </nav>
+
+              <div class="scrim" data-in="9.6" data-fx="fade" data-dur=".5" data-out="14.0" data-odur=".5"></div>
+              <section class="sheet" data-in="9.6" data-fx="sheet" data-dur=".7" data-out="14.0" data-odur=".55">
+                <div class="grab"></div>
+                <div class="sheet-head"><span>CREATE HABIT</span><svg class="ic">
+                    <use href="#i-close" />
+                  </svg></div>
+                <span class="f-lbl">Habit Name</span>
+                <div class="f-in focus"><svg class="ic">
+                    <use href="#i-book" />
+                  </svg><span><span data-type="Read 20 Minutes" data-tin="10.4" data-tdur="1.0"></span><i
+                      class="caret"></i></span></div>
+                <span class="f-lbl">Frequency</span>
+                <div class="chips">
+                  <div class="chip">Every Day<div class="chip-on" data-in="11.55" data-fx="fade" data-dur=".25"><svg
+                        class="ic">
+                        <use href="#i-check" />
+                      </svg>Every Day</div>
+                    <div class="tap" data-tap="11.5"></div>
+                  </div>
+                  <div class="chip">Weekdays</div>
+                  <div class="chip">Custom</div>
+                </div>
+                <span class="f-lbl">Reminder</span>
+                <div class="f-in"><svg class="ic">
+                    <use href="#i-bell" />
+                  </svg>
+                  <div class="vstack"><span class="ph" data-in="0" data-dur=".01" data-fx="fade" data-out="12.05"
+                      data-odur=".2">Set a time</span><span data-in="12.1" data-fx="up" data-dur=".4">8:00 PM</span>
+                  </div>
+                  <div class="tgl"><i></i>
+                    <div class="tgl-on" data-in="12.05" data-fx="fade" data-dur=".25"><i></i></div>
+                  </div>
+                  <div class="tap" data-tap="12.0"></div>
+                </div>
+                <span class="f-lbl">Points</span>
+                <div class="pts-row">
+                  <div class="stepper"><span class="sbtn"><svg class="ic">
+                        <use href="#i-minus" />
+                      </svg></span><span class="pts-big" data-in="12.5" data-fx="pop" data-dur=".55">+50</span><span
+                      class="sbtn"><svg class="ic">
+                        <use href="#i-plus" />
+                      </svg></span></div>
+                  <span class="pts-note">earned every<br>completion</span>
+                </div>
+                <div class="create-btn" data-press="13.2">CREATE HABIT
+                  <div class="create-ok" data-in="13.3" data-fx="fade" data-dur=".3"><svg class="ic">
+                      <use href="#i-check" />
+                    </svg>HABIT CREATED</div>
+                  <div class="tap" data-tap="13.2"></div>
+                </div>
+              </section>
+            </section>
+
+            <!-- LOCK SCREEN (scene 6) -->
+            <section class="scr scr-lock" data-in="33.8" data-dur=".01" data-fx="fade" data-out="37.85" data-odur=".35">
+              <div class="lock-wall"><svg viewBox="0 0 368 360" preserveAspectRatio="none">
+                  <path d="M0,190 L70,120 L110,150 L170,70 L230,140 L270,110 L368,190 L368,360 L0,360Z" fill="#3a3d6e"
+                    opacity=".75" />
+                  <path d="M0,250 L90,180 L150,230 L220,170 L300,230 L368,200 L368,360 L0,360Z" fill="#232a52" />
+                </svg></div>
+              <div class="sb"><span>&nbsp;</span><svg class="sb-ic">
+                  <use href="#i-status" />
+                </svg></div>
+              <div class="lock-date">Monday, October 5</div>
+              <div class="lock-time">8:00</div>
+              <div class="notifs">
+                <div class="notif" data-in="35.1" data-fx="drop" data-dur=".6">
+                  <div class="n-card" id="n1">
+                    <svg class="n-logo">
+                      <use href="#logo" />
+                    </svg>
+                    <div>
+                      <div class="n-meta"><span>CLIMB YOUR DAY</span><span>now</span></div>
+                      <div class="n-title">Time to build your habit</div>
+                      <div class="n-body">Read for 20 minutes</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="notif" data-in="36.3" data-fx="drop" data-dur=".6">
+                  <div class="n-card" data-press="37.6">
+                    <svg class="n-logo">
+                      <use href="#logo" />
+                    </svg>
+                    <div>
+                      <div class="n-meta"><span>CLIMB YOUR DAY</span><span>now</span></div>
+                      <div class="n-title">Your daily climb is waiting</div>
+                      <div class="n-body">Complete your habits to keep climbing.</div>
+                    </div>
+                    <div class="tap" data-tap="37.6"></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- HABIT DETAIL (scene 6) -->
+            <section class="scr scr-light" data-in="37.85" data-fx="zoom" data-dur=".55" data-out="39.9" data-odur=".3">
+              <div class="sb"><span class="sb-time">8:00</span><svg class="sb-ic">
+                  <use href="#i-status" />
+                </svg></div>
+              <div class="d-top"><svg class="ic">
+                  <use href="#i-back" />
+                </svg>Today</div>
+              <div class="d-hero">
+                <svg viewBox="0 0 210 210">
+                  <circle cx="105" cy="105" r="92" fill="none" stroke="#e6edf7" stroke-width="14" />
+                  <circle cx="105" cy="105" r="92" fill="none" stroke="#ff9f5a" stroke-width="14" stroke-linecap="round"
+                    stroke-dasharray="578" stroke-dashoffset="520" />
+                </svg>
+                <div class="d-mid"><svg class="ic">
+                    <use href="#i-book" />
+                  </svg><b>0 / 20</b><span>minutes</span></div>
+              </div>
+              <div class="d-title">Read 20 Minutes</div>
+              <div class="d-meta">Every day · Reminder 8:00 PM</div>
+              <div class="d-stats">
+                <div class="d-stat"><b>7</b><span>DAY STREAK</span></div>
+                <div class="d-stat"><b>+50</b><span>POINTS</span></div>
+                <div class="d-stat"><b>92%</b><span>ON TRACK</span></div>
+              </div>
+              <div class="d-btn"><svg class="ic">
+                  <use href="#i-play" />
+                </svg>START HABIT</div>
+            </section>
+
+            <!-- FEED (scene 7) — generic, unbranded -->
+            <section class="scr scr-feed" data-in="39.9" data-fx="fade" data-dur=".3" data-out="46.0" data-odur=".01">
+              <div class="sb"><span class="sb-time">8:14</span><svg class="sb-ic">
+                  <use href="#i-status" />
+                </svg></div>
+              <div class="feed-top">
+                <div class="fbar"></div>
+                <div class="fdot"></div>
+                <div class="fdot"></div>
+              </div>
+              <div class="feed-scroll">
+                <div class="feed-track" id="feedTrack"></div>
+              </div>
+              <div class="focus-pill" data-in="43.7" data-fx="drop" data-dur=".5">
+                <svg class="ic">
+                  <use href="#i-moon" />
+                </svg>Focus Mode
+                <div class="tg">
+                  <div class="tg-on" id="tgOn"></div><i class="knob" id="focusKnob"></i>
+                </div>
+              </div>
+              <div class="focus-veil" data-in="44.4" data-fx="fade" data-dur=".5">
+                <div class="fv-ic"><svg class="ic">
+                    <use href="#i-mountain" />
+                  </svg></div>
+                <div class="fv-t">FOCUS MODE</div>
+                <div class="fv-s">6 distracting apps paused</div>
+              </div>
+            </section>
+
+            <!-- FOCUS TIMER (scene 8) -->
+            <section class="scr scr-focus" data-in="47.8" data-dur=".01" data-fx="fade" data-out="54.5" data-odur=".01">
+              <div class="sb"><span class="sb-time">8:30</span><svg class="sb-ic">
+                  <use href="#i-status" />
+                </svg></div>
+              <div class="fo-top"><svg class="ic">
+                  <use href="#i-moon" />
+                </svg>FOCUS MODE</div>
+              <div class="fo-ring">
+                <svg viewBox="0 0 268 268">
+                  <defs>
+                    <linearGradient id="foGrad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stop-color="#9fd0ff" />
+                      <stop offset="1" stop-color="#ffb06a" />
+                    </linearGradient>
+                  </defs>
+                  <circle cx="134" cy="134" r="116" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="14" />
+                  <circle id="foArc" cx="134" cy="134" r="116" fill="none" stroke="url(#foGrad)" stroke-width="14"
+                    stroke-linecap="round" stroke-dasharray="728.85" stroke-dashoffset="728.85" />
+                </svg>
+                <div class="fo-mid">
+                  <div class="fo-time" id="foTime">25:00</div>
+                  <div class="fo-unit">MINUTES</div>
+                </div>
+              </div>
+              <div class="fo-motto">STAY ON THE CLIMB</div>
+              <div class="fo-chip"><svg class="ic">
+                  <use href="#i-lock" />
+                </svg>6 distracting apps paused</div>
+              <div class="fo-btn" data-press="49.1">
+                <span data-in="0" data-dur=".01" data-fx="fade" data-out="49.15" data-odur=".15">START</span>
+                <span class="alt" data-in="49.2" data-fx="fade" data-dur=".3">FOCUSING…</span>
+                <div class="tap" data-tap="49.1"></div>
+              </div>
+              <div class="fo-done" data-in="52.1" data-fx="fade" data-dur=".4">
+                <div class="fo-check" data-in="52.2" data-fx="pop" data-dur=".6"><svg class="ic">
+                    <use href="#i-check" />
+                  </svg></div>
+                <div class="fo-dt">FOCUS SESSION<br>COMPLETE</div>
+                <div class="chip-lg" id="chip100" data-in="52.35" data-fx="pop" data-dur=".5" data-out="53.4"
+                  data-odur=".3">+100 POINTS</div>
+              </div>
+            </section>
+
+            <!-- DASHBOARD (scene 11) -->
+            <section class="scr scr-light" data-in="68.9" data-dur=".01" data-fx="fade">
+              <div class="sb"><span class="sb-time">9:41</span><svg class="sb-ic">
+                  <use href="#i-status" />
+                </svg></div>
+              <div class="db-head" data-in="69.5" data-fx="up">
+                <div class="db-brand"><svg>
+                    <use href="#logo" />
+                  </svg>CLIMB YOUR DAY</div>
+                <div class="db-ava">12</div>
+              </div>
+              <div class="db-card" data-in="69.6" data-fx="up">
+                <div class="db-row"><span class="db-eyebrow">TODAY</span><span class="db-pts"><b
+                      data-count="0,850,70.0,1.4">0</b> / 1000 POINTS</span></div>
+                <div class="bar"><i data-bar="0,85,70.0,1.4"></i></div>
+              </div>
+              <div class="db-stats" data-in="69.75" data-fx="up">
+                <div class="stat warm-s"><svg class="ic">
+                    <use href="#i-flame" />
+                  </svg><b>7</b><span>DAY STREAK</span></div>
+                <div class="stat"><svg class="ic">
+                    <use href="#i-mountain" />
+                  </svg><b>12</b><span>LEVEL</span></div>
+                <div class="stat"><svg class="ic">
+                    <use href="#i-bolt" />
+                  </svg><b>3/4</b><span>HABITS</span></div>
+              </div>
+              <div class="db-sec" data-in="69.9" data-fx="up">TODAY'S HABITS<span>3 / 4</span></div>
+              <div class="db-habits" data-in="70.0" data-fx="up">
+                <div class="db-h">
+                  <div class="db-c">
+                    <div class="on" data-in="70.6" data-fx="pop" data-dur=".45"><svg class="ic">
+                        <use href="#i-check" />
+                      </svg></div>
+                  </div>Morning Workout<em>+100</em>
+                </div>
+                <div class="db-h">
+                  <div class="db-c">
+                    <div class="on" data-in="70.9" data-fx="pop" data-dur=".45"><svg class="ic">
+                        <use href="#i-check" />
+                      </svg></div>
+                  </div>Read 20 Minutes<em>+50</em>
+                </div>
+                <div class="db-h">
+                  <div class="db-c">
+                    <div class="on" data-in="71.2" data-fx="pop" data-dur=".45"><svg class="ic">
+                        <use href="#i-check" />
+                      </svg></div>
+                  </div>Drink Water<em>+50</em>
+                </div>
+                <div class="db-h">
+                  <div class="db-c"></div>Meditate<em>+75</em>
+                </div>
+              </div>
+              <div class="db-add" data-in="70.15" data-fx="up"><svg class="ic">
+                  <use href="#i-plus" />
+                </svg>ADD HABIT</div>
+              <div class="db-mtn" data-in="70.3" data-fx="up">
+                <svg viewBox="0 0 336 104" preserveAspectRatio="xMidYMid slice">
+                  <defs>
+                    <linearGradient id="dmSky" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#1d3d70" />
+                      <stop offset="1" stop-color="#e6a982" />
+                    </linearGradient>
+                  </defs>
+                  <rect width="336" height="104" fill="url(#dmSky)" />
+                  <path d="M0,104 L60,64 L90,76 L130,40 L170,74 L210,58 L336,104Z" fill="#4c6a9c" opacity=".6" />
+                  <path d="M110,104 L232,14 L336,104Z" fill="#8aa7d0" />
+                  <path d="M232,14 L336,104 L240,104 L248,60Z" fill="#46689c" />
+                  <path d="M232,14 L246,26 L238,28 L232,36 L224,26Z" fill="#fff" />
+                  <path d="M170,104 C 230,96 250,84 222,74 S 250,56 240,44 S 236,24 232,16" fill="none" stroke="#fff"
+                    stroke-opacity=".55" stroke-width="1.6" stroke-dasharray="1 4" stroke-linecap="round" />
+                  <path d="M170,104 C 230,96 250,84 222,74 S 250,56 240,44 S 238,30 235,24" fill="none" stroke="#ffd39b"
+                    stroke-width="2.2" stroke-linecap="round" />
+                  <circle cx="235" cy="24" r="9" fill="#ffd39b" opacity=".35" />
+                  <circle cx="235" cy="24" r="4" fill="#ffd39b" />
+                  <line x1="232" y1="14" x2="232" y2="2" stroke="#fff" stroke-width="1.2" />
+                  <path d="M232,2 L241,4.5 L232,7Z" fill="#ff9f5a" />
+                </svg>
+                <div class="m-lbl">MOUNTAIN<b>LEVEL 12</b></div>
+              </div>
+              <nav class="tabbar">
+                <div class="tab on"><span class="ti"><svg class="ic">
+                      <use href="#i-today" />
+                    </svg></span>Today</div>
+                <div class="tab"><span class="ti"><svg class="ic">
+                      <use href="#i-mountain" />
+                    </svg></span>Climb</div>
+                <div class="tab"><span class="ti"><svg class="ic">
+                      <use href="#i-history" />
+                    </svg></span>History</div>
+                <div class="tab"><span class="ti"><svg class="ic">
+                      <use href="#i-stats" />
+                    </svg></span>Stats</div>
+                <div class="tab"><span class="ti"><svg class="ic">
+                      <use href="#i-more" />
+                    </svg></span>More</div>
+              </nav>
+            </section>
+
+            <div class="island"></div>
+            <div class="glare"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= TEXT & CARDS ================= -->
+      <div class="ui">
+        <!-- S1 -->
+        <div class="t-block center" style="top:170px">
+          <div class="hero-logo" data-in="1.0" data-out="3.8" data-fx="up" data-dur="1"><svg>
+              <use href="#logo" />
+            </svg></div>
+          <div class="mask">
+            <div class="h-hero" data-in="1.25" data-out="3.8" data-fx="mask" data-dur="1.1">CLIMB YOUR DAY</div>
+          </div>
+          <div class="hero-rule" data-in="1.9" data-out="3.8" data-fx="scale" data-dur=".8"></div>
+        </div>
+        <div class="t-block center" style="top:210px">
+          <div class="mask">
+            <div class="h-lg" data-in="4.0" data-out="6.5" data-fx="mask" data-dur=".9">BUILD BETTER HABITS.</div>
+          </div>
+          <div class="mask">
+            <div class="h-lg warm" data-in="4.35" data-out="6.5" data-fx="mask" data-dur=".9">CLIMB HIGHER EVERY DAY.
+            </div>
+          </div>
+        </div>
+
+        <!-- S2 -->
+        <div class="t-block" style="left:170px;top:360px">
+          <div class="kick" data-in="7.8" data-out="13.9" data-fx="up">Add your habits</div>
+          <div class="mask">
+            <div class="h-md" data-in="8.0" data-out="13.9" data-fx="mask">Small steps.</div>
+          </div>
+          <div class="mask">
+            <div class="h-md warm" data-in="8.2" data-out="13.9" data-fx="mask">Big mountains.</div>
+          </div>
+          <div class="sub" data-in="8.5" data-out="13.9" data-fx="up">Name a habit, pick a reminder, and earn points
+            every time you show up.</div>
+        </div>
+
+        <!-- S3 -->
+        <div class="t-block right" style="right:150px;top:150px">
+          <div class="kick" data-in="18.4" data-out="21.4" data-fx="up">Every habit counts</div>
+          <div class="mask">
+            <div class="h-xl" data-in="18.5" data-out="21.4" data-fx="mask">HABIT COMPLETE</div>
+          </div>
+          <div class="mask">
+            <div class="h-xl warm" data-in="18.8" data-out="21.4" data-fx="mask">+50 POINTS</div>
+          </div>
+        </div>
+
+        <!-- S4 -->
+        <div class="glass" style="left:130px;top:280px;width:480px" data-in="23.3" data-out="27.6" data-fx="up"
+          data-dur=".8">
+          <div class="g-kick">TODAY'S PROGRESS</div>
+          <div class="g-big"><b data-count="0,750,24.3,2.7">0</b><span>/ 1000 POINTS</span></div>
+          <div class="bar lg"><i data-bar="0,75,24.3,2.7"></i></div>
+          <ul class="mini-habits">
+            <li><span class="mh-check"><span class="on" data-in="24.6" data-fx="pop" data-dur=".45"><svg class="ic">
+                    <use href="#i-check" />
+                  </svg></span></span>Morning Workout<em>+100</em></li>
+            <li><span class="mh-check"><span class="on" data-in="25.3" data-fx="pop" data-dur=".45"><svg class="ic">
+                    <use href="#i-check" />
+                  </svg></span></span>Read 20 Minutes<em>+50</em></li>
+            <li><span class="mh-check"><span class="on" data-in="26.0" data-fx="pop" data-dur=".45"><svg class="ic">
+                    <use href="#i-check" />
+                  </svg></span></span>Walk 5,000 Steps<em>+100</em></li>
+            <li><span class="mh-check"><span class="on" data-in="26.7" data-fx="pop" data-dur=".45"><svg class="ic">
+                    <use href="#i-check" />
+                  </svg></span></span>Focus Session<em>+100</em></li>
+          </ul>
+        </div>
+
+        <!-- S5 -->
+        <div class="glass" style="left:120px;top:230px;width:640px" data-in="28.5" data-out="33.6" data-fx="up"
+          data-dur=".8">
+          <div class="streak-head">
+            <div class="flame"><svg class="ic">
+                <use href="#i-flame" />
+              </svg></div>
+            <div><b><span id="streakN">0</span> DAY STREAK</b><span>Every day you show up, you climb higher.</span>
+            </div>
+          </div>
+          <div class="streak-wrap" id="streakWrap">
+            <svg viewBox="0 0 560 250">
+              <polyline id="stBase" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="3" stroke-dasharray="2 9"
+                stroke-linecap="round" />
+              <polyline id="stProg" fill="none" stroke="#ffcf98" stroke-width="4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- S6 -->
+        <div class="t-block" style="left:150px;top:380px;width:560px">
+          <div class="kick" data-in="34.9" data-out="39.4" data-fx="up">Smart reminders</div>
+          <div class="mask">
+            <div class="h-md" data-in="35.1" data-out="39.4" data-fx="mask">Right time.</div>
+          </div>
+          <div class="mask">
+            <div class="h-md warm" data-in="35.3" data-out="39.4" data-fx="mask">Right habit.</div>
+          </div>
+          <div class="sub" data-in="35.6" data-out="39.4" data-fx="up">Gentle nudges keep you consistent — one tap takes
+            you straight to your climb.</div>
+        </div>
+
+        <!-- S7 -->
+        <div class="t-block" style="left:130px;top:330px">
+          <div class="dwords">
+            <div class="dword" data-in="40.7" data-out="44.4" data-fx="left">DISTRACTION</div>
+            <svg class="darrow ic" data-in="41.1" data-out="44.4" data-fx="fade">
+              <use href="#i-down" />
+            </svg>
+            <div class="dword" data-in="41.4" data-out="44.4" data-fx="left">ENDLESS SCROLLING</div>
+            <svg class="darrow ic" data-in="41.8" data-out="44.4" data-fx="fade">
+              <use href="#i-down" />
+            </svg>
+            <div class="dword muted" data-in="42.1" data-out="44.4" data-fx="left">TIME LOST</div>
+          </div>
+        </div>
+        <div class="glass st-card" style="left:1370px;top:330px" data-in="41.0" data-out="44.4" data-fx="right">
+          <div class="g-kick">SCREEN TIME TODAY</div>
+          <div class="g-big"><b id="stTime">1h 12m</b></div>
+          <div class="st-bars" id="stBars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="t-block center" style="top:120px">
+          <div class="mask">
+            <div class="h-xl" data-in="45.8" data-out="47.6" data-fx="mask">LESS SCROLLING.</div>
+          </div>
+          <div class="mask">
+            <div class="h-xl warm" data-in="46.1" data-out="47.6" data-fx="mask">MORE CLIMBING.</div>
+          </div>
+          <div class="sub" data-in="46.5" data-out="47.6" data-fx="up">Choose where your time goes.</div>
+        </div>
+
+        <!-- S8 -->
+        <div class="t-block right" style="right:150px;top:150px">
+          <div class="kick" data-in="48.8" data-out="53.4" data-fx="up">Focus time</div>
+          <div class="mask">
+            <div class="h-md" data-in="49.0" data-out="53.4" data-fx="mask">Deep focus.</div>
+          </div>
+          <div class="mask">
+            <div class="h-md warm" data-in="49.2" data-out="53.4" data-fx="mask">Real altitude.</div>
+          </div>
+        </div>
+
+        <!-- S9 -->
+        <div class="t-block" style="left:150px;top:140px">
+          <div class="kick" data-in="54.6" data-out="60.4" data-fx="up">Checkpoints</div>
+          <div class="mask">
+            <div class="h-md" data-in="54.8" data-out="60.4" data-fx="mask">Every step</div>
+          </div>
+          <div class="mask">
+            <div class="h-md warm" data-in="55.0" data-out="60.4" data-fx="mask">is progress.</div>
+          </div>
+        </div>
+
+        <!-- S10 -->
+        <div class="t-block center" style="top:150px">
+          <div class="kick" data-in="64.0" data-out="66.3" data-fx="up">You made it</div>
+          <div class="mask">
+            <div class="h-hero" data-in="64.2" data-out="66.3" data-fx="mask" data-dur="1.1">SUMMIT REACHED</div>
+          </div>
+        </div>
+        <div class="t-block center" style="top:160px">
+          <div class="mask">
+            <div class="h-xl" data-in="66.4" data-out="68.5" data-fx="mask">TODAY COMPLETE</div>
+          </div>
+          <div class="chips-row">
+            <div class="s-chip" data-in="66.85" data-out="68.5" data-fx="pop"><svg class="ic">
+                <use href="#i-bolt" />
+              </svg>+500 POINTS</div>
+            <div class="s-chip" data-in="67.05" data-out="68.5" data-fx="pop"><svg class="ic">
+                <use href="#i-flame" />
+              </svg>7 DAY STREAK</div>
+          </div>
+        </div>
+
+        <!-- S11 callouts -->
+        <div class="t-block center" style="top:60px">
+          <div class="kick" data-in="70.0" data-out="75.2" data-fx="up">Your whole climb, one app</div>
+        </div>
+        <div class="callout" style="left:300px;top:260px" data-in="71.0" data-out="75.2" data-fx="left">
+          <div class="co-ic green-bg"><svg class="ic">
+              <use href="#i-check" />
+            </svg></div>
+          <div><b>Build daily habits</b><span>Simple, satisfying check-ins</span></div>
+        </div>
+        <div class="callout" style="left:340px;top:640px" data-in="71.5" data-out="75.2" data-fx="left">
+          <div class="co-ic"><svg class="ic">
+              <use href="#i-bell" />
+            </svg></div>
+          <div><b>Smart reminders</b><span>Nudges that keep you consistent</span></div>
+        </div>
+        <div class="callout" style="left:1220px;top:300px" data-in="71.25" data-out="75.2" data-fx="right">
+          <div class="co-ic warm-bg"><svg class="ic">
+              <use href="#i-bolt" />
+            </svg></div>
+          <div><b>Earn points & level up</b><span>Every habit moves you higher</span></div>
+        </div>
+        <div class="callout" style="left:1220px;top:600px" data-in="71.75" data-out="75.2" data-fx="right">
+          <div class="co-ic"><svg class="ic">
+              <use href="#i-moon" />
+            </svg></div>
+          <div><b>Focus mode</b><span>Less scrolling, more climbing</span></div>
+        </div>
+
+        <!-- S12 -->
+        <div class="t-block center" style="top:170px">
+          <div class="mask">
+            <div class="h-hero" data-in="76.8" data-out="79.0" data-fx="mask" data-dur="1.2">CLIMB YOUR DAY</div>
+          </div>
+        </div>
+        <div class="t-block center" style="top:150px">
+          <div class="mask">
+            <div class="h-lg" data-in="79.0" data-out="81.5" data-fx="mask">BUILD HABITS.</div>
+          </div>
+          <div class="mask">
+            <div class="h-lg" data-in="79.3" data-out="81.5" data-fx="mask">EARN POINTS.</div>
+          </div>
+          <div class="mask">
+            <div class="h-lg warm" data-in="79.6" data-out="81.5" data-fx="mask">CLIMB HIGHER.</div>
+          </div>
+        </div>
+        <div class="t-block center" style="top:150px">
+          <div class="mask">
+            <div class="h-lg" data-in="81.65" data-out="83.6" data-fx="mask">YOUR DAY.</div>
+          </div>
+          <div class="mask">
+            <div class="h-lg" data-in="82.0" data-out="83.6" data-fx="mask">YOUR HABITS.</div>
+          </div>
+          <div class="mask">
+            <div class="h-lg warm" data-in="82.35" data-out="83.6" data-fx="mask">YOUR SUMMIT.</div>
+          </div>
+        </div>
+      </div>
+
+      <canvas id="particles" width="1920" height="1080"></canvas>
+      <div class="vignette"></div>
+      <div class="disclaimer-top" id="disclaimerTop">This video is just for advertisement app interface is completely
+        different</div>
+      <div id="flash" class="flash"></div>
+      <div id="endDark" class="end-dark"></div>
+      <div class="ui">
+        <div class="t-block center" style="top:290px">
+          <div class="endcard" data-in="83.9" data-fx="scale" data-dur="1.1">
+            <div class="end-logo"><svg>
+                <use href="#logo" />
+              </svg></div>
+            <div class="end-name">CLIMB YOUR DAY</div>
+            <div class="end-tag">Build habits · Earn points · Climb higher</div>
+            <div class="end-cta">Start your climb today</div>
+          </div>
+        </div>
+      </div>
+      <div class="grain"></div>
+      <div id="fadeBlack" class="fade-black"></div>
+    </div>
+
+    <!-- Audio element with original generated soundtrack -->
+    <audio id="bgm" src="soundtrack.wav" preload="auto"></audio>
+
+    <!-- playback controls (not part of the video frame) -->
+    <div class="controls" id="controls">
+      <button id="btnPlay" aria-label="Play or pause"><svg viewBox="0 0 24 24">
+          <path id="playIcon" d="M7 5h4v14H7zM13 5h4v14h-4z" />
+        </svg></button>
+      <button id="btnRestart" aria-label="Restart"><svg viewBox="0 0 24 24">
+          <path d="M12 5V2L7 6l5 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z" />
+        </svg></button>
+      <button id="btnAudio" aria-label="Toggle sound" class="on" title="Sound: On / Off [Press M]">
+        <svg viewBox="0 0 24 24">
+          <path id="audioIcon"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
+        </svg>
+      </button>
+      <button id="btnVoice" aria-label="Toggle voiceover narration" class="on" title="Voiceover: On (Samantha) [Press V]">
+        <svg viewBox="0 0 24 24">
+          <path id="voiceIcon"
+            d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5-3c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" />
+        </svg>
+      </button>
+      <div class="scrub">
+        <div class="ticks" id="ticks"></div><input id="scrub" type="range" min="0" max="86" step="0.01" value="0"
+          aria-label="Timeline">
+      </div>
+      <span id="tc">0:00 / 1:26</span>
+      <span class="scene-name" id="sceneName">Beginning</span>
+      <button id="btnLoop" class="on" aria-label="Toggle loop">LOOP</button>
+      <button id="btnFull" aria-label="Fullscreen"><svg viewBox="0 0 24 24">
+          <path d="M4 4h6v2H6v4H4zM14 4h6v6h-2V6h-4zM4 14h2v4h4v2H4zM18 14h2v6h-6v-2h4z" />
+        </svg></button>
+    </div>
+  </main>
+
+  <script src="main.js"></script>
+</body>
+
+</html>
